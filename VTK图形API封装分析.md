@@ -732,14 +732,14 @@ flowchart TD
     G --> H["Superclass::Render → 遍历 Renderers"]
     H --> I{窗口是否已初始化?}
     I -->|否| J["Start() → CreateAWindow()"]
-    J --> K[glXChooseFBConfig]
+    J --> K["glXChooseFBConfig"]
     K --> L["glXCreateContextAttribsARB<br/>请求 GL 3.2 Core"]
     L --> M{上下文创建成功?}
-    M -->|是| N[SetContextSupportsOpenGL32(true)]
+    M -->|是| N["SetContextSupportsOpenGL32(true)"]
     M -->|否| O["glXCreateContext 旧式 API<br/>降级到 GL 2.x"]
     N --> P["OpenGLInit()<br/>glewInit + OpenGLInitState"]
     O --> P
-    P --> Q[MakeCurrent + 渲染]
+    P --> Q["MakeCurrent + 渲染"]
     I -->|是| Q
     Q --> R([完成])
 ```
